@@ -1,42 +1,50 @@
 let clear = document.querySelector("#C");
 let inp = 0;
-let oper;
+let oper = '';
 let temp = 0;
-let previous_operand = document.querySelector("#formula");
+let previous_operand = 0; 
 let current_operand = document.querySelector("#digit");
-let numbers =  document.querySelectorAll(".num");
+let fomula = document.querySelector("#formula");
+let oprator = document.querySelector("#oprator");
 function Clear() {
-    console.log("hi");
+    current_operand.innerText = '';
 }
 function ClearAll() {
-    
+    current_operand.innerText = '';
+    previous_operand = 0;
+    formula.innerText = '';
+    operator.innerText = '';
+    temp = 0;
 }
 function delet(){
 
 }
-function getInput(){
-    if (inp == 0){
-        inp = this.span.innerText;
-        console.log(inp.value);
-    }
+function getInput(element){
+    console.log(element.innerText);
     if (inp != 0){
-        inp = inp + this.span.innerText;
-        console.log(inp.value);
+        inp = inp + element.innerText;
+        console.log(inp);
+        updateDsply();
     }
-    if (this.span.innerText == '.'){
+    if (inp == 0){
+        inp = element.innerText;
+        console.log(inp);
+        updateDsply();
+    }
+    if (element.innerText == '.'){
        if(inp.includes('.')){
-        console.log(inp.value);
-        return;
+        element.onclick="";
+        console.log(inp);
        }
        else {
-        inp = inp + this.span.innerText;
-        console.log(inp.value);
+        inp = inp + element.innerText;
+        console.log(inp);
        }
     }
 }
-function getOprator(){
+function getOprator(elem){
     if (inp != ''){
-        oper = this.span.innerText;
+        oper = elem.innerText;
         console.log(inp.value);
         updateDsply();
     }
@@ -48,9 +56,17 @@ function getOprator(){
 }
 function compute(){
 
+
 }
 function updateDsply() {
-    
-
+    current_operand.innerText = inp;
+    oprator.innerText = oper;
+    if (oper != ''){
+        formula.innerText = '';
+        formula += inp + oper;
+        previous_operand += inp + oper;
+        inp = 0;
+        oper ='';
+    }
 }
 
